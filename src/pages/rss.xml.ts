@@ -3,48 +3,53 @@ import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 
 export async function GET(context: APIContext) {
-  // Get all published content
-  const posts = await getCollection('posts', ({ data }) => data.published);
+  // Get all published content (excluding blog posts to match original)
   const reading = await getCollection('reading', ({ data }) => data.published);
   const photography = await getCollection('photography', ({ data }) => data.published);
   const code = await getCollection('code', ({ data }) => data.published);
 
-  // Combine all items
+  const siteURL = context.site!.toString().replace(/\/$/, '');
+
+  // Combine all items with title prefixes
   const allItems = [
-    ...posts.map((post) => ({
-      title: post.data.title,
-      pubDate: new Date(post.data.date),
-      description: post.data.excerpt || '',
-      link: `/blog/${post.slug}/`,
-    })),
     ...reading.map((post) => ({
       title: `Reading List - ${post.data.title}`,
       pubDate: new Date(post.data.date),
       description: post.data.excerpt || '',
-      link: `/reading/${post.slug}/`,
+      content: post.data.excerpt || '',
+      link: `${siteURL}/reading/${post.id}`,
+      author: 'tywayne@fastmail.com (Ty Carlson)',
     })),
     ...photography.map((post) => ({
       title: `Photography - ${post.data.title}`,
       pubDate: new Date(post.data.date),
       description: post.data.excerpt || '',
-      link: `/photography/${post.slug}/`,
+      content: post.data.excerpt || '',
+      link: `${siteURL}/photography/${post.id}`,
+      author: 'tywayne@fastmail.com (Ty Carlson)',
     })),
     ...code.map((post) => ({
       title: `Code - ${post.data.title}`,
       pubDate: new Date(post.data.date),
       description: post.data.excerpt || '',
-      link: `/code/${post.slug}/`,
+      content: post.data.excerpt || '',
+      link: `${siteURL}/code/${post.id}`,
+      author: 'tywayne@fastmail.com (Ty Carlson)',
     })),
   ];
 
   // Sort by date descending
   allItems.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
 
+  const date = new Date();
+
   return rss({
     title: 'Ty Carlson',
-    description: 'Personal website of Ty Carlson - reading, photography, code, and more.',
+    description: '',
     site: context.site!,
     items: allItems,
-    customData: `<language>en-us</language>`,
+    customData: `<lastBuildDate>${date.toUTCString()}</lastBuildDate>
+<generator>https://github.com/jpmonette/feed</generator>
+<copyright>All rights reserved ${date.getFullYear()}, Ty Carlson</copyright>`,
   });
 }
