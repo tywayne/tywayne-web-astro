@@ -1,16 +1,87 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
+// Get published content sorted by date
+const readingPosts = (await getCollection('reading', ({ data }) => data.published))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const photographyPosts = (await getCollection('photography', ({ data }) => data.published))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const codePosts = (await getCollection('code', ({ data }) => data.published))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">hello, my name is ty carlson</h1>
+
+  <p class="leading-relaxed mb-4">
+    I have been building websites, web apps, mobile apps, design systems, and most anything in
+    between for over a decade. I am currently a Senior Frontend Engineer at{' '}
+    <a href="https://givebutter.com/" target="_blank" rel="noreferrer nofollow">
+      Givebutter
+    </a>, bringing together everything changemakers need to successfully raise funds for good
+    causes.
+  </p>
+
+  <p class="leading-relaxed mb-4">
+    I currently live in Connecticut with my wife (Lauren), son (Liam), and daughter (Remi).
+  </p>
+
+  <p class="leading-relaxed mb-4">
+    Occasionally I enjoy taking on freelance projects. If you&lsquo;re looking for that sort of
+    thing, feel free to <a href="mailto:tywayne@fastmail.com">email me</a>.
+  </p>
+
+  <hr />
+
+  <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-none">reading</h2>
+  <p class="max-w-[34em] leading-relaxed mb-4">
+    Several years ago I re-invigorated my love of reading, and began setting yearly goals and
+    tracking the books I chose to read. Here is that list of books I've read, grouped by year.
+  </p>
+  <div class="max-w-[34em]">
+    <ul class="my-6 p-0 flex flex-wrap">
+      {readingPosts.map((post) => (
+        <li class="list-none mr-4 mb-4">
+          <a href={`/reading/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <hr />
+
+  <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-none">photography</h2>
+  <p class="max-w-[34em] leading-relaxed mb-4">
+    A selection of photos, mostly shot on 35mm and medium format film.
+  </p>
+  <div class="max-w-[34em]">
+    <ul class="my-6 p-0 flex flex-wrap">
+      {photographyPosts.map((post) => (
+        <li class="list-none mr-4 mb-4">
+          <a href={`/photography/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <hr />
+
+  <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-none">code</h2>
+  <p class="max-w-[34em] leading-relaxed mb-4">
+    Open source projects and code snippets.
+  </p>
+  <div class="max-w-[34em]">
+    <ul class="my-6 p-0">
+      {codePosts.map((post) => (
+        <li class="list-none mb-6 leading-relaxed">
+          <a href={`/code/${post.slug}`}>{post.data.title}</a>
+          {post.data.archived && <span class="strikethrough ml-2">(archived)</span>}
+          {post.data.excerpt && <p class="mt-1 mb-0 text-sm">{post.data.excerpt}</p>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

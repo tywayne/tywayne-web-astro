@@ -1,0 +1,53 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('reading');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const title = `Reading List - ${post.data.title}`;
+const description = `List of books I read in ${post.data.title}, in chronological order.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <h1 class="text-2xl md:text-3xl font-bold mb-6 leading-none">
+      reading list &mdash; {post.data.title}
+    </h1>
+    <p class="leading-relaxed mb-4">
+      List of books I read in {post.data.title}, in chronological order.
+    </p>
+
+    <div class="progress">
+      <progress
+        id="progress"
+        class="inline"
+        value={post.data.book_count}
+        max={post.data.goal}
+      ></progress>
+      <label for="progress">
+        Completed {post.data.book_count} out of {post.data.goal} book goal.
+      </label>
+    </div>
+
+    <div class="max-w-[34em]">
+      <div class="readingList prose prose-lg">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <aside>
+    <a href="/reading" class="inline-block mt-32">
+      &larr; reading list
+    </a>
+  </aside>
+</BaseLayout>

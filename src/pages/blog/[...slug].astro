@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from 'astro:content';
+import { format } from 'date-fns';
+import readingTime from 'reading-time';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(post);
+
+// Calculate reading time from the raw markdown body
+const stats = readingTime(post.body || '');
+
+const title = post.data.title;
+const description = post.data.excerpt || '';
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <h1 class="text-2xl md:text-3xl font-bold mb-6 leading-none">{post.data.title}</h1>
+    <p class="leading-relaxed mb-2">{format(new Date(post.data.date), 'MMM d, y')}</p>
+    <span>
+      <small>
+        Read time: <strong>{Math.round(stats.minutes)} mins</strong>
+      </small>
+    </span>
+
+    <hr />
+
+    <div class="prose prose-lg max-w-[34em]">
+      <Content />
+    </div>
+  </article>
+
+  <aside>
+    <a href="/blog" class="inline-block mt-32">
+      &larr; blog
+    </a>
+  </aside>
+</BaseLayout>

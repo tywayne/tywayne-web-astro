@@ -1,0 +1,59 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+interface NavLink {
+  url: string;
+  label: string;
+}
+
+const { currentPath } = Astro.props;
+
+// Navigation links (currently empty, uncomment to enable)
+const mainNavLinks: NavLink[] = [
+  // { url: '/blog', label: 'blog' },
+  // { url: '/reading', label: 'reading' },
+  // { url: '/photography', label: 'photography' },
+];
+
+const isSelected = (url: string) => {
+  if (url === '/') return currentPath === '/';
+  return currentPath.startsWith(url);
+};
+---
+
+<nav class="relative mb-[15vh] px-[5%]">
+  <ul class="m-0 p-0 list-none flex justify-end items-center">
+    <li class="flex-grow ml-0 mt-6 mr-4 md:mx-8">
+      <a
+        href="/"
+        class:list={[
+          'inline-block p-2 no-underline shadow-none text-foreground text-sm md:text-base font-normal transition-colors duration-200',
+          'hover:opacity-100 hover:shadow-[0_2px_0_0_var(--color-foreground)]',
+          'focus-visible:outline-dotted focus-visible:outline-1 focus-visible:outline-foreground',
+          { 'shadow-[0_2px_0_0_var(--color-foreground)] font-bold': isSelected('/') },
+        ]}
+      >
+        {'//'}
+      </a>
+    </li>
+    {
+      mainNavLinks.map((link) => (
+        <li class="mt-6 mr-4 md:mx-8 last:mr-0">
+          <a
+            href={link.url}
+            class:list={[
+              'inline-block p-2 no-underline shadow-none text-foreground text-sm md:text-base font-normal transition-colors duration-200',
+              'hover:opacity-100 hover:shadow-[0_2px_0_0_var(--color-foreground)]',
+              'focus-visible:outline-dotted focus-visible:outline-1 focus-visible:outline-foreground',
+              { 'shadow-[0_2px_0_0_var(--color-foreground)] font-bold': isSelected(link.url) },
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
