@@ -54,14 +54,37 @@ const codePosts = (await getCollection('code', ({ data }) => data.published))
   <hr />
 
   <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-none">photography</h2>
-  <p class="max-w-[34em] leading-relaxed mb-4">
-    A selection of photos, mostly shot on 35mm and medium format film.
+  <p class="leading-relaxed mb-4">
+    Be forewarned, I'm an amateur photographer at best. I bought an old{' '}
+    <a href="http://camera-wiki.org/wiki/Yashica_FX-2" target="_blank" rel="noreferrer">
+      Yashica FX-2
+    </a>{' '}
+    on eBay to try out film, and quickly learned how expensive it is to process. The DIYer in me
+    figured out how to process and scan the film myself. I still don't <em>actually</em> know what
+    I'm doing, but it's enjoyable nonetheless.
   </p>
-  <div class="max-w-[34em]">
-    <ul class="my-6 p-0 flex flex-wrap">
+  <p class="leading-relaxed mb-4">
+    In 2021, I upgraded my equipment to shoot medium format with a{' '}
+    <a
+      href="http://camera-wiki.org/wiki/Mamiya_M645_Super,_Pro,_Pro_TL_and_E"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Mamiya 645 Super
+    </a>{' '}
+    and am really loving the format so far. Fingers crossed I don't burn too much more money on this
+    hobby!
+  </p>
+  <div>
+    <ul class="my-6 p-0 columns-1 sm:columns-2 lg:columns-3">
       {photographyPosts.map((post) => (
-        <li class="list-none mr-4 mb-4">
+        <li class="list-none mb-6 break-inside-avoid leading-relaxed">
           <a href={`/photography/${post.slug}`}>{post.data.title}</a>
+          {post.data.excerpt && (
+            <p class="mt-1 mb-0">
+              <small>{post.data.excerpt}</small>
+            </p>
+          )}
         </li>
       ))}
     </ul>
@@ -71,15 +94,21 @@ const codePosts = (await getCollection('code', ({ data }) => data.published))
 
   <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-none">code</h2>
   <p class="max-w-[34em] leading-relaxed mb-4">
-    Open source projects and code snippets.
+    I write code for a living. From time to time I get the hankering to put something out into the
+    world as open source, available to anyone who might want to use it. Here are a couple of those
+    projects.
   </p>
   <div class="max-w-[34em]">
-    <ul class="my-6 p-0">
+    <ul class="my-6 p-0 flex flex-wrap">
       {codePosts.map((post) => (
-        <li class="list-none mb-6 leading-relaxed">
-          <a href={`/code/${post.slug}`}>{post.data.title}</a>
-          {post.data.archived && <span class="strikethrough ml-2">(archived)</span>}
-          {post.data.excerpt && <p class="mt-1 mb-0 text-sm">{post.data.excerpt}</p>}
+        <li class="list-none mr-4 mb-4">
+          {post.data.archived ? (
+            <span class="strikethrough">
+              <a href={`/code/${post.slug}`}>{post.data.title}</a>
+            </span>
+          ) : (
+            <a href={`/code/${post.slug}`}>{post.data.title}</a>
+          )}
         </li>
       ))}
     </ul>
