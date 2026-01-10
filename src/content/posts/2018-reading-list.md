@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 2018 Reading List
 date: '2018-12-16T14:55:00.000Z'
 categories: personal

@@ -3,7 +3,6 @@ import { defineCollection, z } from 'astro:content';
 const posts = defineCollection({
   type: 'content',
   schema: z.object({
-    layout: z.string().optional(),
     title: z.string(),
     date: z.string(),
     categories: z.string().optional(),
@@ -17,7 +16,6 @@ const posts = defineCollection({
 const reading = defineCollection({
   type: 'content',
   schema: z.object({
-    layout: z.string().optional(),
     title: z.string(),
     date: z.string(),
     published: z.boolean().default(false),
@@ -31,7 +29,6 @@ const reading = defineCollection({
 const photography = defineCollection({
   type: 'content',
   schema: z.object({
-    layout: z.string().optional(),
     title: z.string(),
     date: z.string(),
     published: z.boolean().default(false),
@@ -44,7 +41,6 @@ const photography = defineCollection({
 const code = defineCollection({
   type: 'content',
   schema: z.object({
-    layout: z.string().optional(),
     title: z.string(),
     date: z.string(),
     published: z.boolean().default(false),

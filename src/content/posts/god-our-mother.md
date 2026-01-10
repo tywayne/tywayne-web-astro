@@ -1,5 +1,4 @@
 ---
-layout: post
 title: God, Our Mother
 date: '2018-07-10T14:55:00.000Z'
 categories: personal faith religion

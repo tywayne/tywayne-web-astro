@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'DSN+DEV+OKC Lightning Talk'
 date: '2017-06-12T14:55:00.000Z'
 categories: development

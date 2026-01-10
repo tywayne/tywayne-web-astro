@@ -1,6 +1,5 @@
 ---
 title: 'February 2023'
-layout: photography
 published: true
 date: '2023-02-11T00:00:00-06:00'
 excerpt: Mamiya 645, Kodak Ektar 100

@@ -1,6 +1,5 @@
 ---
 title: 'August 2021'
-layout: photography
 published: true
 date: '2021-08-25T00:00:00-06:00'
 excerpt: Yashica FX-2, Ilford HP5 400

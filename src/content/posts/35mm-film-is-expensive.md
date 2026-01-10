@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 35mm Film is Expensive
 date: '2017-09-18T14:55:00.000Z'
 categories: personal hobby photography film

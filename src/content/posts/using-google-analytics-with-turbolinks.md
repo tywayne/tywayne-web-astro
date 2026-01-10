@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Using Google Analytics with Turbolinks'
 date: '2017-02-26T14:55:00.000Z'
 categories: development

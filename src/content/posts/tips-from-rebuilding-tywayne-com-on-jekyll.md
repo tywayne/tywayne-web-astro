@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Tips From Rebuilding tywayne.com on Jekyll'
 date: '2017-02-24T14:55:00.000Z'
 categories: jekyll
