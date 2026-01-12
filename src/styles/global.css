@@ -3,29 +3,24 @@
 
 /* Design tokens */
 @theme {
-  --color-foreground: #33403d;
-  --color-background: #e4dbcd;
-  --color-background-alt: #bbb5aa;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    "Helvetica Neue", sans-serif;
+  --font-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 
-  --font-family-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
-    Cantarell, "Helvetica Neue", sans-serif;
-  --font-family-mono:
-    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  --color-bg: #e4dbcd;
+  --color-bg-alt: #56625e;
+  --color-fg: #33403d;
 }
 
-/* Dark mode colors */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-foreground: #e4dbcd;
-    --color-background: #33403d;
-    --color-background-alt: #56625e;
-  }
+@theme dark {
+  --color-bg: #33403d;
+  --color-bg-alt: #56625e;
+  --color-fg: #e4dbcd;
 }
 
 /* Base styles */
 html {
-  font-size: 62.5%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -33,60 +28,20 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-family-sans);
-  font-size: 1.6rem;
-  background: var(--color-background);
-  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-fg);
   transition:
     0.2s ease-in background,
     0.2s ease-in color;
 }
 
-/* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: 1.25;
-  margin: 0;
-  margin-bottom: 2.4rem;
-}
-
-h1 {
-  font-size: 3rem;
-}
-
-@media screen and (min-width: 768px) {
-  h1 {
-    font-size: 4rem;
-  }
-}
-
-h2 {
-  font-size: 2.4rem;
-  line-height: 1;
-}
-
-@media screen and (min-width: 768px) {
-  h2 {
-    font-size: 3.2rem;
-  }
-}
-
-p {
-  line-height: 1.6;
-  margin: 0;
-  margin-bottom: 1.6rem;
-}
-
 /* Links */
 a {
-  color: var(--color-foreground);
+  color: var(--color-fg);
   text-decoration: none;
   font-weight: bold;
-  box-shadow: 0 2px 0 var(--color-foreground);
+  box-shadow: 0 2px 0 var(--color-fg);
   transition:
     0.2s ease-in color,
     0.2s ease-in box-shadow,
@@ -100,94 +55,67 @@ a:hover {
 a:focus,
 a:focus-visible {
   opacity: 0.6;
-  outline: var(--color-background-alt) dotted 1px;
-}
-
-/* Lists */
-ul {
-  margin: 2.4rem 0;
-  padding: 0;
-}
-
-ul li {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2.4rem 0;
-  line-height: 1.6;
+  outline: var(--color-bg-alt) dotted 1px;
 }
 
 /* Horizontal rule */
 hr {
   border: none;
-  border-bottom: 1px dashed var(--color-background-alt);
+  border-bottom: 1px dashed var(--color-bg-alt);
   display: block;
-  margin: 4rem 0;
+  margin: 3rem 0;
 }
 
-/* Blockquotes */
-blockquote {
-  background-color: var(--color-background-alt);
-  border-left: 3px solid var(--color-foreground);
-  padding: 2.4rem;
-  margin: 0 0 1.6rem 0;
-  transition:
-    0.2s ease-in background-color,
-    0.2s ease-in border-left;
+progress {
+  @apply appearance-none border-none w-full h-1 rounded-sm transition-colors duration-200;
+  background-color: var(--color-bg-alt);
 }
-
-blockquote p:last-child {
-  margin-bottom: 0;
+progress::-webkit-progress-bar {
+  @apply rounded-sm;
+  background-color: var(--color-bg-alt);
 }
-
-/* Progress bar */
-.progress {
-  margin-bottom: 48px;
+progress::-webkit-progress-value {
+  @apply rounded-sm;
+  background-color: var(--color-fg);
 }
-
-.progress label {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 12px;
-}
-
-.progress progress {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  width: 100%;
-  height: 4px;
-  margin: 0;
-  padding: 0;
-  border-radius: 2px;
-  margin-bottom: 4px;
-  background-color: var(--color-background-alt);
-  transition: 0.2s ease-in background-color;
-}
-
-.progress progress::-webkit-progress-bar {
-  border-radius: 2px;
-  background-color: var(--color-background-alt);
-  transition: 0.2s ease-in background-color;
-}
-
-.progress progress::-webkit-progress-value {
-  border-radius: 2px;
-  background-color: var(--color-foreground);
-  transition: 0.2s ease-in background-color;
-}
-
-.progress progress::-moz-progress-bar {
-  border-radius: 2px;
-  background-color: var(--color-foreground);
-  transition: 0.2s ease-in background-color;
+progress::-moz-progress-bar {
+  @apply rounded-sm;
+  background-color: var(--color-fg);
 }
 
 /* Prose overrides */
 .prose a {
-  box-shadow: 0 2px 0 var(--color-foreground);
+  box-shadow: 0 2px 0 var(--color-fg);
 }
 
 .prose a:hover {
   opacity: 0.6;
+}
+
+.prose {
+  --tw-prose-body: var(--color-fg);
+  --tw-prose-headings: var(--color-fg);
+  --tw-prose-links: var(--color-fg);
+  --tw-prose-bold: var(--color-fg);
+  --tw-prose-quotes: var(--color-fg);
+  --tw-prose-code: var(--color-fg);
+  --tw-prose-hr: var(--color-bg-alt);
+  --tw-prose-body: var(--color-fg);
+  --tw-prose-headings: var(--color-fg);
+  --tw-prose-lead: var(--color-fg);
+  --tw-prose-links: var(--color-fg);
+  --tw-prose-bold: var(--color-fg);
+  --tw-prose-counters: var(--color-fg);
+  --tw-prose-bullets: var(--color-fg);
+  --tw-prose-hr: var(--color-bg-alt);
+  --tw-prose-quotes: var(--color-fg);
+  --tw-prose-quote-borders: var(--color-bg-alt);
+  --tw-prose-captions: var(--color-fg);
+  --tw-prose-kbd: var(--color-fg);
+  --tw-prose-kbd-shadows: var(--color-fg);
+  --tw-prose-code: var(--color-fg);
+  --tw-prose-pre-code: var(--color-fg);
+  --tw-prose-pre-bg: var(--color-bg-alt);
+  --tw-prose-th-borders: var(--color-bg-alt);
+  --tw-prose-td-borders: var(--color-bg-alt);
 }

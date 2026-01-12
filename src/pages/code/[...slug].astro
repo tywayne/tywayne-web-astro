@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { twMerge } from "tailwind-merge";
 
 export async function getStaticPaths() {
@@ -24,9 +24,7 @@ const description = post.data.excerpt || "";
       {post.data.title}
     </h1>
 
-    <a
-      href={post.data.link}
-      class={twMerge(post.data.archived && "line-through")}
+    <a href={post.data.link} class={twMerge(post.data.archived && "line-through")}
       >&Dagger; View on Github</a
     >
 

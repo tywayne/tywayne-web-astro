@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  posts: CollectionEntry<"reading">[];
+  isStandalonePage?: boolean;
+}
+
+const { posts, isStandalonePage = false } = Astro.props;
+---
+
+{
+  isStandalonePage ? (
+    <h1 class="text-2xl md:text-3xl font-bold mb-6 leading-none">reading list</h1>
+  ) : (
+    <h2>reading</h2>
+  )
+}
+
+<p>
+  Several years ago I re-invigorated my love of reading, and began setting yearly goals and tracking
+  the books I chose to read. Here is that list of books I've read, grouped by year.
+</p>
+
+<ul class="flex flex-wrap m-0 p-0 mt-8">
+  {
+    posts.map((post) => (
+      <li class="m-0 p-0 mr-4 mb-4 list-none">
+        <a href={`/reading/${post.slug}`}>{post.data.title}</a>
+      </li>
+    ))
+  }
+</ul>
+
+{
+  isStandalonePage && (
+    <a href="/" class="inline-block mt-32">
+      &larr; home
+    </a>
+  )
+}

@@ -1,38 +1,51 @@
 ---
-import "../styles/global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer";
+import "@/styles/global.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
   title?: string;
   description?: string;
+  className?: string;
 }
 
-const { title = "Ty Carlson", description = "Personal website of Ty Carlson" } =
-  Astro.props;
+const {
+  title = "Ty Carlson",
+  description = "Personal website of Ty Carlson",
+  className,
+} = Astro.props;
 const pageTitle = title === "Ty Carlson" ? title : `${title} | Ty Carlson`;
 ---
 
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="RSS Feed"
-      href="/rss.xml"
-    />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
     <title>{pageTitle}</title>
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("DARK_MODE");
+        if (stored !== null) {
+          const dark = JSON.parse(stored);
+          const style = document.documentElement.style;
+          style.setProperty("--color-fg", dark ? "#e4dbcd" : "#33403d");
+          style.setProperty("--color-bg", dark ? "#33403d" : "#e4dbcd");
+          style.setProperty("--color-bg-alt", dark ? "#56625e" : "#bbb5aa");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div class="min-h-screen flex flex-col justify-between">
       <Header currentPath={Astro.url.pathname} />
-      <main class="px-[5%] md:max-w-[64ch] mb-[15vh] min-h-[40vh]">
-        <slot />
+      <main class="px-[5%] w-full">
+        <div class={twMerge("md:max-w-[64ch] mb-[15vh] min-h-[40vh]", className)}>
+          <slot />
+        </div>
       </main>
       <Footer client:load />
     </div>

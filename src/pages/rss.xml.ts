@@ -5,10 +5,7 @@ import type { APIContext } from "astro";
 export async function GET(context: APIContext) {
   // Get all published content (excluding blog posts to match original)
   const reading = await getCollection("reading", ({ data }) => data.published);
-  const photography = await getCollection(
-    "photography",
-    ({ data }) => data.published,
-  );
+  const photography = await getCollection("photography", ({ data }) => data.published);
   const code = await getCollection("code", ({ data }) => data.published);
 
   const siteURL = context.site!.toString().replace(/\/$/, "");

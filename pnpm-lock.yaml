@@ -1345,8 +1345,7 @@ packages:
       {
         integrity: sha512-gzZE+epuCrNuxOa8/F1dzkllDOFvxWhGeobQKeBRIAef5sUpUKMHZo/8clse+02rYnKJCgwXBgjW4uTu9mqUUw==,
       }
-    engines:
-      { node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: ">=9.6.5", pnpm: ">=7.1.0" }
+    engines: { node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: ">=9.6.5", pnpm: ">=7.1.0" }
     hasBin: true
 
   axobject-query@4.1.0:

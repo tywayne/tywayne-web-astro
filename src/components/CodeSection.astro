@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  posts: CollectionEntry<"code">[];
+  isStandalonePage?: boolean;
+}
+
+const { posts, isStandalonePage = false } = Astro.props;
+---
+
+{
+  isStandalonePage ? (
+    <h1 class="text-2xl md:text-3xl font-bold mb-6 leading-none">code</h1>
+  ) : (
+    <h2>code</h2>
+  )
+}
+
+<p>
+  I write code for a living. From time to time I get the hankering to put something out into the
+  world as open source, available to anyone who might want to use it. Here are a couple of those
+  projects.
+</p>
+
+<ul class="flex flex-wrap p-0 m-0">
+  {
+    posts.map((post) => (
+      <li class="p-0 m-0 mr-4 mb-4 list-none">
+        {post.data.archived ? (
+          <span class="line-through">
+            <a href={`/code/${post.slug}`}>{post.data.title}</a>
+          </span>
+        ) : (
+          <a href={`/code/${post.slug}`}>{post.data.title}</a>
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+{
+  isStandalonePage && (
+    <a href="/" class="inline-block mt-32">
+      &larr; home
+    </a>
+  )
+}

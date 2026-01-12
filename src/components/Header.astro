@@ -1,4 +1,6 @@
 ---
+import { twMerge } from "tailwind-merge";
+
 interface Props {
   currentPath: string;
 }
@@ -25,36 +27,30 @@ const isSelected = (url: string) => {
 
 <nav class="relative mb-[15vh] px-[5%]">
   <ul class="m-0 p-0 list-none flex justify-end items-center">
-    <li class="flex-grow ml-0 mt-6 mr-4 md:mx-8">
+    <li class="grow m-0 mt-6 p-0">
       <a
         href="/"
-        class:list={[
+        class={twMerge(
           "inline-block p-2 no-underline shadow-none text-foreground text-sm md:text-base font-normal transition-colors duration-200",
           "hover:opacity-100 hover:shadow-[0_2px_0_0_var(--color-foreground)]",
           "focus-visible:outline-dotted focus-visible:outline-1 focus-visible:outline-foreground",
-          {
-            "shadow-[0_2px_0_0_var(--color-foreground)] font-bold":
-              isSelected("/"),
-          },
-        ]}
+          isSelected("/") && "shadow-[0_2px_0_0_var(--color-foreground)] font-bold",
+        )}
       >
         {"//"}
       </a>
     </li>
     {
       mainNavLinks.map((link) => (
-        <li class="mt-6 mr-4 md:mx-8 last:mr-0">
+        <li class="mt-6 last:mr-0 p-0">
           <a
             href={link.url}
-            class:list={[
+            class={twMerge(
               "inline-block p-2 no-underline shadow-none text-foreground text-sm md:text-base font-normal transition-colors duration-200",
               "hover:opacity-100 hover:shadow-[0_2px_0_0_var(--color-foreground)]",
               "focus-visible:outline-dotted focus-visible:outline-1 focus-visible:outline-foreground",
-              {
-                "shadow-[0_2px_0_0_var(--color-foreground)] font-bold":
-                  isSelected(link.url),
-              },
-            ]}
+              isSelected(link.url) && "shadow-[0_2px_0_0_var(--color-foreground)] font-bold",
+            )}
           >
             {link.label}
           </a>
