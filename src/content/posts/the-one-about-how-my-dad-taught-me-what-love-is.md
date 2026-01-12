@@ -1,6 +1,6 @@
 ---
-title: 'The One About How My Dad Taught Me What Love Is'
-date: '2013-10-16T14:55:00.000Z'
+title: "The One About How My Dad Taught Me What Love Is"
+date: "2013-10-16T14:55:00.000Z"
 categories: general
 published: true
 author: Ty Carlson

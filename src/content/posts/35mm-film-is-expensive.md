@@ -1,6 +1,6 @@
 ---
 title: 35mm Film is Expensive
-date: '2017-09-18T14:55:00.000Z'
+date: "2017-09-18T14:55:00.000Z"
 categories: personal hobby photography film
 published: false
 author: Ty Carlson

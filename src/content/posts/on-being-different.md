@@ -1,6 +1,6 @@
 ---
 title: On Being Different
-date: '2020-01-18T14:55:00.000Z'
+date: "2020-01-18T14:55:00.000Z"
 categories: personal
 published: false
 author: Ty Carlson

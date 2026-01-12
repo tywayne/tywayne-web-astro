@@ -1,5 +1,5 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
 export interface ImageInfo {
   src: string;
@@ -7,7 +7,7 @@ export interface ImageInfo {
 }
 
 export function getImagesFromDirectory(imgDir: string): ImageInfo[] {
-  const publicDir = path.join(process.cwd(), 'public', imgDir);
+  const publicDir = path.join(process.cwd(), "public", imgDir);
 
   if (!fs.existsSync(publicDir)) {
     return [];

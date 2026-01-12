@@ -1,6 +1,6 @@
 ---
-title: 'New Adventure: Helping Couples Make Date Night Simple With Datebox'
-date: '2017-03-24T14:55:00.000Z'
+title: "New Adventure: Helping Couples Make Date Night Simple With Datebox"
+date: "2017-03-24T14:55:00.000Z"
 categories: life
 published: true
 author: Ty Carlson

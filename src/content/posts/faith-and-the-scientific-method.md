@@ -1,6 +1,6 @@
 ---
-title: 'Faith and The Scientific Method'
-date: '2017-02-28T14:55:00.000Z'
+title: "Faith and The Scientific Method"
+date: "2017-02-28T14:55:00.000Z"
 categories: faith religion
 published: true
 author: Ty Carlson

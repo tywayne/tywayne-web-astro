@@ -1,9 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { twMerge } from "tailwind-merge";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('code');
+  const posts = await getCollection("code");
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
@@ -14,20 +15,20 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const title = `Code - ${post.data.title}`;
-const description = post.data.excerpt || '';
+const description = post.data.excerpt || "";
 ---
 
 <BaseLayout title={title} description={description}>
   <article>
-    <h1 class="text-2xl md:text-3xl font-bold mb-6 leading-none">{post.data.title}</h1>
+    <h1 class="text-2xl md:text-3xl font-bold mb-6 leading-none">
+      {post.data.title}
+    </h1>
 
-    {post.data.archived ? (
-      <span class="strikethrough">
-        <a href={post.data.link}>&Dagger; View on Github</a>
-      </span>
-    ) : (
-      <a href={post.data.link}>&Dagger; View on Github</a>
-    )}
+    <a
+      href={post.data.link}
+      class={twMerge(post.data.archived && "line-through")}
+      >&Dagger; View on Github</a
+    >
 
     <hr />
 
@@ -37,8 +38,6 @@ const description = post.data.excerpt || '';
   </article>
 
   <aside>
-    <a href="/code" class="inline-block mt-32">
-      &larr; code
-    </a>
+    <a href="/code" class="inline-block mt-32"> &larr; code </a>
   </aside>
 </BaseLayout>

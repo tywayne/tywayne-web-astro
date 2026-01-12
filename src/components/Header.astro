@@ -18,7 +18,7 @@ const mainNavLinks: NavLink[] = [
 ];
 
 const isSelected = (url: string) => {
-  if (url === '/') return currentPath === '/';
+  if (url === "/") return currentPath === "/";
   return currentPath.startsWith(url);
 };
 ---
@@ -29,13 +29,16 @@ const isSelected = (url: string) => {
       <a
         href="/"
         class:list={[
-          'inline-block p-2 no-underline shadow-none text-foreground text-sm md:text-base font-normal transition-colors duration-200',
-          'hover:opacity-100 hover:shadow-[0_2px_0_0_var(--color-foreground)]',
-          'focus-visible:outline-dotted focus-visible:outline-1 focus-visible:outline-foreground',
-          { 'shadow-[0_2px_0_0_var(--color-foreground)] font-bold': isSelected('/') },
+          "inline-block p-2 no-underline shadow-none text-foreground text-sm md:text-base font-normal transition-colors duration-200",
+          "hover:opacity-100 hover:shadow-[0_2px_0_0_var(--color-foreground)]",
+          "focus-visible:outline-dotted focus-visible:outline-1 focus-visible:outline-foreground",
+          {
+            "shadow-[0_2px_0_0_var(--color-foreground)] font-bold":
+              isSelected("/"),
+          },
         ]}
       >
-        {'//'}
+        {"//"}
       </a>
     </li>
     {
@@ -44,10 +47,13 @@ const isSelected = (url: string) => {
           <a
             href={link.url}
             class:list={[
-              'inline-block p-2 no-underline shadow-none text-foreground text-sm md:text-base font-normal transition-colors duration-200',
-              'hover:opacity-100 hover:shadow-[0_2px_0_0_var(--color-foreground)]',
-              'focus-visible:outline-dotted focus-visible:outline-1 focus-visible:outline-foreground',
-              { 'shadow-[0_2px_0_0_var(--color-foreground)] font-bold': isSelected(link.url) },
+              "inline-block p-2 no-underline shadow-none text-foreground text-sm md:text-base font-normal transition-colors duration-200",
+              "hover:opacity-100 hover:shadow-[0_2px_0_0_var(--color-foreground)]",
+              "focus-visible:outline-dotted focus-visible:outline-1 focus-visible:outline-foreground",
+              {
+                "shadow-[0_2px_0_0_var(--color-foreground)] font-bold":
+                  isSelected(link.url),
+              },
             ]}
           >
             {link.label}

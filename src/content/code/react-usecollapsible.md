@@ -1,7 +1,7 @@
 ---
-title: 'react-usecollapsible'
+title: "react-usecollapsible"
 published: true
-date: '2022-12-30T03:53:00.000Z'
+date: "2022-12-30T03:53:00.000Z"
 excerpt: React hook for easily creating accessible collapsed content.
 archived: false
 link: https://github.com/tywayne/react-usecollapsible/

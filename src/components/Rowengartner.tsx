@@ -1,17 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const Parts = [
-  new Set(['Rulen', 'Raven', 'Rosen', 'Roven', 'Roger', 'Rowen', 'Runna', 'Rollin']),
   new Set([
-    'verter',
-    'boozer',
-    'gagger',
-    'grueter',
-    'grooten',
-    'gardener',
-    'gartner',
-    'mucker',
-    'fruiter',
+    "Rulen",
+    "Raven",
+    "Rosen",
+    "Roven",
+    "Roger",
+    "Rowen",
+    "Runna",
+    "Rollin",
+  ]),
+  new Set([
+    "verter",
+    "boozer",
+    "gagger",
+    "grueter",
+    "grooten",
+    "gardener",
+    "gartner",
+    "mucker",
+    "fruiter",
   ]),
 ];
 
@@ -38,7 +47,7 @@ export default function Rowengartner() {
       className="fixed inset-0 flex items-end justify-center p-8"
       style={{
         background: "url('/images/henry.jpg') top center no-repeat",
-        backgroundSize: 'cover',
+        backgroundSize: "cover",
       }}
     >
       <div>

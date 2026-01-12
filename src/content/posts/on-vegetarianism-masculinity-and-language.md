@@ -1,6 +1,6 @@
 ---
 title: On Vegetarianism, Masculinity, and Language
-date: '2017-06-25T14:55:00.000Z'
+date: "2017-06-25T14:55:00.000Z"
 categories: personal faith religion
 published: true
 author: Ty Carlson

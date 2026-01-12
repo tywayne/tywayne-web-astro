@@ -1,6 +1,6 @@
 ---
-title: 'Using Google Analytics with Turbolinks'
-date: '2017-02-26T14:55:00.000Z'
+title: "Using Google Analytics with Turbolinks"
+date: "2017-02-26T14:55:00.000Z"
 categories: development
 published: false
 author: Ty Carlson
@@ -17,7 +17,7 @@ that puts a global `ga` object with methods and values that we can use to send t
 to Google. Included by default in the code provided by Google is a call to send a page view.
 
 ```javascript
-ga('send', 'pageview');
+ga("send", "pageview");
 ```
 
 This works great on a regular site, where each page/view is a new page load, which triggers this
@@ -46,7 +46,7 @@ go back and remove the line from the code Google provided so you don't get dupli
 
 ```javascript
 // remove this line from the code Google provided
-ga('send', 'pageview');
+ga("send", "pageview");
 ```
 
 And that's it! This should correctly fire the `ga.send()` function on each page load even when

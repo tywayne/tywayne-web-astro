@@ -1,6 +1,6 @@
 ---
 title: God, Our Mother
-date: '2018-07-10T14:55:00.000Z'
+date: "2018-07-10T14:55:00.000Z"
 categories: personal faith religion
 published: true
 author: Ty Carlson

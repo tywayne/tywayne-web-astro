@@ -1,11 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const posts = (await getCollection('reading', ({ data }) => data.published))
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const posts = (
+  await getCollection("reading", ({ data }) => data.published)
+).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
 
-const title = 'Reading List';
+const title = "Reading List";
 const description = "List of books I've read, grouped by year.";
 ---
 
@@ -13,21 +16,22 @@ const description = "List of books I've read, grouped by year.";
   <h1 class="text-2xl md:text-3xl font-bold mb-6 leading-none">reading list</h1>
 
   <p class="max-w-[34em] leading-relaxed mb-4">
-    Several years ago I re-invigorated my love of reading, and began setting yearly goals and
-    tracking the books I chose to read. Here is that list of books I've read, grouped by year.
+    Several years ago I re-invigorated my love of reading, and began setting
+    yearly goals and tracking the books I chose to read. Here is that list of
+    books I've read, grouped by year.
   </p>
 
   <div class="max-w-[34em]">
     <ul class="my-6 p-0 flex flex-wrap">
-      {posts.map((post) => (
-        <li class="list-none mr-4 mb-4">
-          <a href={`/reading/${post.slug}`}>{post.data.title}</a>
-        </li>
-      ))}
+      {
+        posts.map((post) => (
+          <li class="list-none mr-4 mb-4">
+            <a href={`/reading/${post.slug}`}>{post.data.title}</a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 
-  <a href="/" class="inline-block mt-32">
-    &larr; home
-  </a>
+  <a href="/" class="inline-block mt-32"> &larr; home </a>
 </BaseLayout>

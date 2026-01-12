@@ -1,9 +1,9 @@
 ---
-import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('reading');
+  const posts = await getCollection("reading");
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
@@ -31,8 +31,7 @@ const description = `List of books I read in ${post.data.title}, in chronologica
         id="progress"
         class="inline"
         value={post.data.book_count}
-        max={post.data.goal}
-      ></progress>
+        max={post.data.goal}></progress>
       <label for="progress">
         Completed {post.data.book_count} out of {post.data.goal} book goal.
       </label>
@@ -46,8 +45,6 @@ const description = `List of books I read in ${post.data.title}, in chronologica
   </article>
 
   <aside>
-    <a href="/reading" class="inline-block mt-32">
-      &larr; reading list
-    </a>
+    <a href="/reading" class="inline-block mt-32"> &larr; reading list </a>
   </aside>
 </BaseLayout>
