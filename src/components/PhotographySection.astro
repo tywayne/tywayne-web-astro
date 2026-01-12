@@ -39,10 +39,10 @@ const { posts, isStandalonePage = false } = Astro.props;
   and am really loving the format so far. Fingers crossed I don't burn too much more money on this hobby!
 </p>
 
-<ul class="columns-1 sm:columns-2 lg:columns-3 p-0 m-0">
+<ul class="columns-1 sm:columns-2 lg:columns-3 p-0 m-0 mt-8">
   {
     posts.map((post) => (
-      <li class="break-inside-avoid p-0 m-0 mb-6 list-none leading-relaxed">
+      <li class="break-inside-avoid p-0 m-0 mb-6 list-none leading-relaxed mt-0">
         <a href={`/photography/${post.slug}`}>{post.data.title}</a>
         {post.data.excerpt && (
           <p class="mt-1 mb-0">
